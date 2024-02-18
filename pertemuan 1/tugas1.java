@@ -2,10 +2,9 @@ import java.util.Scanner;
 
 public class tugas1 {
     public static void main(String[] args) {
-        // Array pertama berisi kode plat mobil
+       
         char[] KODE = { 'A', 'B', 'D', 'E', 'F', 'G', 'H', 'L', 'N', 'T' };
 
-        // Array kedua berisi nama kota yang berpasangan dengan kode plat mobil
         char[][] KOTA = {
                 { 'B', 'A', 'N', 'T', 'E', 'N' },
                 { 'J', 'A', 'K', 'A', 'R', 'T', 'A' },
@@ -21,11 +20,9 @@ public class tugas1 {
 
         Scanner sc = new Scanner(System.in);
 
-        //  input kode plat mobil
         System.out.print("Masukkan kode plat mobil: ");
         char input = sc.next().toUpperCase().charAt(0);
-
-        // Mencari nama kota dari kode plat mobil
+        
         boolean found = false;
         for (int i = 0; i < KODE.length; i++) {
             if (KODE[i] == input) {
@@ -34,7 +31,6 @@ public class tugas1 {
             }
         }
 
-        // Jika kode plat mobil tidak ditemukan, tampilkan pesan error
         if (!found) {
             System.out.println("Kode plat mobil tidak ditemukan.");
         }

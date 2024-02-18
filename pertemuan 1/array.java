@@ -67,7 +67,7 @@ public class array {
         System.out.printf("%-40s %-14s %-14s %s\n", "MK", "Nilai Angka", "Nilai Huruf", "Bobot Nilai");
 
         for (int i = 0; i < 9; i++) {
-            System.out.printf("%-40s %-19s %-13s %s\n", matkuls[i][0], nilaiAngka[i], matkuls[i][1], angka[i][1]);
+            System.out.printf("%-40s %-19.2f %-13s %.2f\n", matkuls[i][0], nilaiAngka[i], matkuls[i][1], angka[i][1]);
         }
 
         for (int i = 0; i < 9; i++) {
