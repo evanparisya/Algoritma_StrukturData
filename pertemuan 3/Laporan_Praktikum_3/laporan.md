@@ -25,7 +25,7 @@ konstruktur pada baris program berikut :
 2. class PersegiPanjang tidak memiliki deklarasi konstruktor. Ini sebenarnya memanggil konstruktor default tanpa parameter dari class PersegiPanjang untuk membuat objek baru dan menyimpannya ke dalam array ppArray pada indeks ke-1.
 3. Kode tersebut merupakan deklarasi array kosong dengan kapasitas 3, yang nantinya bisa diisi dengan objek-objek PersegiPanjang
 4. Kode tersebut berfungsi untuk mengisi nilai untuk atribut panjang dan lebar pada objek PersegiPanjang yang baru dibuat tersebut.
-5. 
+5. Pemisahan class ini bertujuan untuk meningkatkan desain dan struktur kode agar lebih modular, reusable, maintainable, dan mengikuti prinsip OOP yang baik.
 
 ## Percobaan 2: Menerima Input Isian Array Menggunakan Looping
 #### Kode Program
@@ -98,3 +98,12 @@ atributnya
 
 ## Latihan Praktikum
 #### Latihan 1
+<img src="image-21.png">
+<img src="image-22.png">
+
+#### Latihan 2
+<img src="image-23.png">
+<img src="image-24.png">
+
+#### Latihan 3
+<img src="image-26.png">
