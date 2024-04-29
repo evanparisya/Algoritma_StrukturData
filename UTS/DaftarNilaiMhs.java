@@ -23,7 +23,7 @@ public class DaftarNilaiMhs {
     }
     // method FindBinarySearh
     public int FindBinarySearch1(int cari, int left, int right) {
-        if (right>left) {
+        if (right>=left) {
             int mid = left + (right - left) / 2;
             if (cari==listnilai[mid].nilai) {
                 return mid;
@@ -32,12 +32,13 @@ public class DaftarNilaiMhs {
                 return FindBinarySearch1(cari, left, mid-1);
             }
             return FindBinarySearch1(cari, mid+1, right);
+        } else {
+            return -1;
         }
-        return -1;
     }
 
     public int FindBinarySearch2(int cari, int left, int right) {
-        if (right>left) {
+        if (right>=left) {
             int mid = left + (right - left) / 2;
             if (cari==listnilai[mid].nilai) {
                 return mid;
@@ -46,8 +47,9 @@ public class DaftarNilaiMhs {
                 return FindBinarySearch2(cari, left, mid-1);
             }
             return FindBinarySearch2(cari, mid+1, right);
+        } else {
+            return -1;
         }
-        return -1;
     }
 
     public void tampilPosisi(int x, int pos) {
