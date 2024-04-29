@@ -6,6 +6,7 @@ public class Barang09 {
     int kode;
     String nama;
     String kategori;
+    
 
     Barang09(int kode, String nama, String kategori){
         this.kode = kode;
