@@ -70,6 +70,43 @@ public class Gudang09 {
         }
     }
 
+    public void cariBarang(String key) {
+        boolean ditemukan = false;
+
+        for (int j=0; j<=top; j++) {
+            try {
+                int kodeKey = Integer.parseInt(key);
+                if (tumpukan[j].nama.equalsIgnoreCase(key) || tumpukan[j].kode == kodeKey) {
+                    System.out.println("Barang ditemukan!");
+                    ditemukan = true;
+                    System.out.println("Kode Barang: "+ tumpukan[j].kode);
+                    System.out.println("nama Barang: "+ tumpukan[j].nama);
+                    System.out.println("Kategori Barang: "+ tumpukan[j].kategori);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                break;
+            }
+        }
+
+        for (int j=0; j<=top; j++) {
+            if (tumpukan[j].nama.equalsIgnoreCase(key)){
+                System.out.println("Barang ditemukan!");
+                System.out.println("Kode Barang: "+ tumpukan[j].kode);
+                System.out.println("nama Barang: "+ tumpukan[j].nama);
+                System.out.println("Kategori Barang: "+ tumpukan[j].kategori);
+                return;
+            } else {
+                System.out.println("");
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Barang tidak ditemukan!");
+        }  
+    }
+
     public void tampilkanBarang() {
         if (!cekKosong()) {
             System.out.println("Rincian tumpukan barang di Gudang: ");

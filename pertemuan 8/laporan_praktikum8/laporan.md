@@ -384,3 +384,200 @@ Setelah perulangan while selesai, biner akan berisi representasi biner dari bila
 Terakhir, method mengembalikan biner sebagai hasil akhir.
 
 ## Percobaan 3: Konversi Notasi Infix ke Postfix
+#### Kode Program
+Postfix
+```java
+/**
+ * Postfix09
+ */
+public class Postfix09 {
+
+    int n;
+    int top;
+    char[] stack;
+
+    public Postfix09(int total) {
+        n = total;
+        top = -1;
+        stack = new char[n];
+        push ('(');
+    }
+
+    public void push(char c) {
+        top++;
+        stack[top] = c;
+    }
+
+    public char pop() {
+        char item = stack[top];
+        top--;
+        return item;
+    }
+
+    public boolean IsOperand(char c) {
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||
+        (c >= '0' && c <= '9') || c == ' ' || c == '.') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean IsOperator(char c) {
+        if (c == '^' || c == '%' || c == '/' || c == '*' || c == '-' || c == '+') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int derajat(char c) {
+        switch (c) {
+            case '^':
+                return 3;
+            case '%':
+                return 2;
+            case '/':
+                return 2;
+            case '*':
+                return 2;
+            case '-':
+                return 1;
+            case '+':
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
+    public String konversi (String Q) {
+        String P = "";
+        char c;
+        for (int i = 0; i < n; i++) {
+            c = Q.charAt(i);
+            if (IsOperand(c)) {
+                P = P + c;
+            }
+            if (c == '(') {
+                push(c);
+            }
+            if (c == ')') {
+                while (stack[top] != '(') {
+                    P = P + pop();
+                }
+                pop();
+            }
+            if (IsOperator(c)) {
+                while (derajat(stack[top]) >= derajat(c)) {
+                    P = P + pop();
+                }
+                push(c);
+            }
+        }
+        return P;
+    }
+}
+```
+PostfixMain
+```java
+/**
+ * PostfixMain09
+ */
+import java.util.Scanner;
+ public class PostfixMain09 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String P, Q;
+        System.out.println("Masukkan ekspresi matematika (infix) : ");
+        Q = sc.nextLine();
+        Q = Q.trim();
+        Q = Q + ")";
+
+        int total = Q.length();
+
+        Postfix09 post = new Postfix09(total);
+        P = post.konversi(Q);
+        System.out.println("Posftix: " + P);
+    }
+}
+```
+#### Hasil Run
+<img src="image-5.png">
+
+#### Pertanyaan
+1. Pada method derajat, mengapa return value beberapa case bernilai sama? Apabila return 
+value diubah dengan nilai berbeda-beda setiap case-nya, apa yang terjadi?
+2. Jelaskan alur kerja method konversi!
+3. Pada method konversi, apa fungsi dari potongan kode berikut?<img src="image-6.png">
+
+#### Jawaban
+1. Dalam metode derajat, return value dari beberapa case bernilai sama karena hal tersebut mewakili prioritas operasi dalam aritmatika.
+2. Metode konversi menerima sebuah parameter Q yang merupakan string ekspresi matematika dalam bentuk notasi infix.
+Lalu sebuah string P diinisialisasi dengan nilai kosong. String ini akan digunakan untuk menyimpan hasil konversi ke notasi postfix.
+Sebuah perulangan for dilakukan untuk mengiterasi setiap karakter dalam ekspresi infix Q.
+Pada setiap iterasi, karakter c diambil dari ekspresi infix Q.
+Jika c adalah operand (angka, huruf, spasi, atau titik), maka c akan ditambahkan ke string P.
+Jika c adalah tanda kurung buka (, maka c akan didorong (push) ke dalam stack.
+Jika c adalah tanda kurung tutup ), maka karakter-karakter dalam stack akan dikeluarkan (pop) dan ditambahkan ke string P satu per satu hingga ditemukan tanda kurung buka (. Tanda kurung buka ( ini kemudian dikeluarkan dari stack.
+Jika c adalah operator (misalnya ^, %, /, *, -, atau +), maka program akan melakukan langkah-langkah berikut:
+Selama derajat (prioritas) operator yang ada di puncak stack (stack[top]) lebih besar atau sama dengan derajat operator c, keluarkan operator dari stack dan tambahkan ke string P.
+Setelah itu, dorong (push) operator c ke dalam stack.
+Setelah semua karakter dalam ekspresi infix Q diproses, string P akan berisi ekspresi dalam notasi postfix yang dihasilkan.
+Metode konversi mengembalikan string P sebagai hasil akhir.
+3. Potongan kode c = Q.charAt(i); pada metode konversi berfungsi untuk mengambil karakter pada indeks ke-i dari string Q yang merupakan ekspresi matematika dalam notasi infix. Nilai karakter tersebut kemudian disimpan dalam variabel c.
+
+## Latihan Praktikum
+1. Method lihatBarangTerbawah digunakan untuk mengecek barang pada tumpukan terbawah
+```java
+ public Barang09 lihatBarangTerbawah() {
+        if (!cekKosong()) {
+            Barang09 barangTerbawah = tumpukan[0];
+            System.out.println("Barang teratas: " + barangTerbawah.nama);
+            return barangTerbawah;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+```
+2. Method cariBarang digunakan untuk mencari ada atau tidaknya barang berdasarkan kode
+barangnya atau nama barangnya
+```java
+public void cariBarang(String key) {
+        boolean ditemukan = false;
+
+        for (int j=0; j<=top; j++) {
+            try {
+                int kodeKey = Integer.parseInt(key);
+                if (tumpukan[j].nama.equalsIgnoreCase(key) || tumpukan[j].kode == kodeKey) {
+                    System.out.println("Barang ditemukan!");
+                    ditemukan = true;
+                    System.out.println("Kode Barang: "+ tumpukan[j].kode);
+                    System.out.println("nama Barang: "+ tumpukan[j].nama);
+                    System.out.println("Kategori Barang: "+ tumpukan[j].kategori);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                break;
+            }
+        }
+
+        for (int j=0; j<=top; j++) {
+            if (tumpukan[j].nama.equalsIgnoreCase(key)){
+                System.out.println("Barang ditemukan!");
+                System.out.println("Kode Barang: "+ tumpukan[j].kode);
+                System.out.println("nama Barang: "+ tumpukan[j].nama);
+                System.out.println("Kategori Barang: "+ tumpukan[j].kategori);
+                return;
+            } else {
+                System.out.println("");
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Barang tidak ditemukan!");
+        }  
+    }
+```
