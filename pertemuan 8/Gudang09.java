@@ -83,7 +83,7 @@ public class Gudang09 {
 
     public String konversiDesimalKeBiner(int kode){
         StackKonversi09 stack = new StackKonversi09();
-        while (kode > 0) {
+        while (kode != 0) {
             int sisa = kode % 2 ;
             stack.push(sisa);
             kode = kode/ 2;
