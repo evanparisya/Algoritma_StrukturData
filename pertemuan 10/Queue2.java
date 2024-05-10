@@ -1,17 +1,17 @@
 /**
- * Queue
+ * Queue2
  */
-public class Queue {
+public class Queue2 {
 
-    int[] data;
+    Nasabah[] data;
     int front;
     int rear;
     int size;
     int max;
 
-    public Queue(int n) {
+    public Queue2(int n) {
         max = n;
-        data = new int[max];
+        data = new Nasabah[max];
         size = 0;
         front = rear = -1;
     }
@@ -32,43 +32,34 @@ public class Queue {
         }
     }
 
-    public void peek() {
+    void peek() {
         if (!IsEmpty()) {
-            System.out.println("Elemen terdepan: " + data[front]);
+            System.out.println("Elemen terdepan : " + data[front].norek + " " + data[front].nama + " "
+                    + data[front].alamat + " " + data[front].umur + " " + data[front].saldo);
         } else {
             System.out.println("Queue masih kosong");
         }
     }
 
-    public void print() {
+    void print() {
         if (IsEmpty()) {
             System.out.println("Queue masih kosong");
         } else {
             int i = front;
-            while (i !=rear) {
-                System.out.print(data[i] + " ");
+            while (i != rear) {
+                System.out.println(data[i].norek + " " + data[i].nama + " "
+                        + data[i].alamat + " " + data[i].umur + " " + data[i].saldo);
                 i = (i + 1) % max;
             }
-            System.out.println(data[i] + " ");
+            System.out.println(data[i].norek + " " + data[i].nama + " "
+                    + data[i].alamat + " " + data[i].umur + " " + data[i].saldo);
             System.out.println("Jumlah elemen = " + size);
         }
     }
 
-    public void clear() {
-        if (!IsEmpty()) {
-            front = rear = -1;
-            size = 0;
-            System.out.println("Queue berhasil dikosongkan");
-        } else {
-            System.out.println("Queue masih kosong");
-        }
-    }
-
-    public void Enqueue(int dt) {
+    public void Enqueue(Nasabah dt) {
         if (IsFull()) {
             System.out.println("Queue sudah penuh");
-            // untuk menghentikan program jika terjadi queue overflow
-            System.exit(0);
         } else {
             if (IsEmpty()) {
                 front = rear = 0;
@@ -84,8 +75,8 @@ public class Queue {
         }
     }
 
-    public int Dequeue() {
-        int dt = 0;
+    public Nasabah Dequeue() {
+        Nasabah dt = new Nasabah(null, null, null, max, front);
         if (IsEmpty()) {
             System.out.println("Queue masih kosong");
         } else {
@@ -102,7 +93,15 @@ public class Queue {
             }
         }
         return dt;
-    }
+    }   
 
+    public static void menu() {
+        System.out.println("Pilih menu: ");
+        System.out.println("1. Antrian baru");
+        System.out.println("2. Antrian keluar");
+        System.out.println("3. Cek Antrian terdepan");
+        System.out.println("4. Cek Semua Antrian");
+        System.out.println("--------------------------");
+    }
 
 }
