@@ -427,4 +427,22 @@ public class Queue2Main {
 
 #### Jawaban
 1.  if digunakan untuk memastikan bahwa objek Nasabah yang diambil dari antrian memiliki nilai yang valid sebelum menampilkan data tersebut. Kondisi if terdiri dari beberapa pernyataan boolean yang dihubungkan dengan operator logika &&.
-2. 
+2. berikut adalah hasil modifikasi
+    ```java
+     void PeekRear() {
+        if (!IsEmpty()) {
+            System.out.println("Elemen paling belakang : " + data[rear].norek + " " + data[rear].nama + " "
+                    + data[rear].alamat + " " + data[rear].umur + " " + data[rear].saldo);
+        } else {
+            System.out.println("Queue masih kosong");
+        }
+    }
+    ```
+   Main
+    ```java
+    case 5:
+        antri.PeekRear();
+        break;
+    ```
+
+## Tugas

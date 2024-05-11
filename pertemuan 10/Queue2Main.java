@@ -58,6 +58,9 @@ public class Queue2Main {
                 case 4:
                     antri.print();
                     break;
+                case 5:
+                    antri.PeekRear();
+                    break;
             }
         } while (pilih == 1 || pilih == 2 || pilih == 3 || pilih == 4);
 

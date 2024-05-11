@@ -93,7 +93,16 @@ public class Queue2 {
             }
         }
         return dt;
-    }   
+    }
+    
+    void PeekRear() {
+        if (!IsEmpty()) {
+            System.out.println("Elemen paling belakang : " + data[rear].norek + " " + data[rear].nama + " "
+                    + data[rear].alamat + " " + data[rear].umur + " " + data[rear].saldo);
+        } else {
+            System.out.println("Queue masih kosong");
+        }
+    }
 
     public static void menu() {
         System.out.println("Pilih menu: ");
