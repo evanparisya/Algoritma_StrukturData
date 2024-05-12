@@ -2,28 +2,22 @@ public class SLLMain {
     public static void main(String[] args) {
         SingleLinkedList singLL = new SingleLinkedList();
 
+        Mahasiswa mhs1 = new Mahasiswa("Anton", 111);
+        Mahasiswa mhs2 = new Mahasiswa("Prita", 112);
+        Mahasiswa mhs3 = new Mahasiswa("Yusuf", 113);
+        Mahasiswa mhs4 = new Mahasiswa("Doni", 114);
+        Mahasiswa mhs5 = new Mahasiswa("Sari", 115);
+        
+        singLL.addFirst(mhs1);
         singLL.print();
-        singLL.addFirst(890);
+        singLL.addLast(mhs3);
         singLL.print();
-        singLL.addLast(760);
+        singLL.insertAt(1, mhs2);
         singLL.print();
-        singLL.addFirst(700);
+        singLL.addLast(mhs5);
         singLL.print();
-        singLL.insertAfter(700, 999);
-        singLL.print();
-        singLL.insertAt(3, 833);
+        singLL.insertAfter(113, mhs4);
         singLL.print();
 
-        System.out.println("Data pada indeks ke-1=" + singLL.getData(1));
-        System.out.println("Data 3 berada pada indeks ke-" + singLL.indexOf(760));
-
-        singLL.remove(999);
-        singLL.print();
-        singLL.removeAt(0);
-        singLL.print();
-        singLL.removefirst();
-        singLL.print();
-        singLL.removeLast();
-        singLL.print();
     }
 }

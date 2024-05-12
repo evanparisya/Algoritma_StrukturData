@@ -347,3 +347,39 @@ public class SLLMain {
 2. Kode tersebut pada kondisi else if dalam method remove digunakan untuk menghapus node yang datanya sama dengan key dari linked list, kecuali jika node tersebut adalah node pertama (head).
 
 ## Tugas Praktikum
+1. Implementasikan ilustrasi Linked List Berikut. Gunakan 4 macam penambahan data yang telah dipelajari sebelumnya untuk menginputkan data.
+<img src="image-4.png">
+
+2. Buatlah implementasi program antrian layanan unit kemahasiswaan sesuai dengan kondisi yang ditunjukkan pada soal nomor 1! Ketentuan 
+    a. Implementasi antrian menggunakan Queue berbasis Linked List! 
+    b. Program merupakan proyek baru, bukan modifikasi dari soal nomor 1! 
+
+## Jawaban
+1. Berikut hasil implementasi 
+    ```java
+    public class SLLMain {
+    public static void main(String[] args) {
+        SingleLinkedList singLL = new SingleLinkedList();
+
+        Mahasiswa mhs1 = new Mahasiswa("Anton", 111);
+        Mahasiswa mhs2 = new Mahasiswa("Prita", 112);
+        Mahasiswa mhs3 = new Mahasiswa("Yusuf", 113);
+        Mahasiswa mhs4 = new Mahasiswa("Doni", 114);
+        Mahasiswa mhs5 = new Mahasiswa("Sari", 115);
+        
+        singLL.addFirst(mhs1);
+        singLL.print();
+        singLL.addLast(mhs3);
+        singLL.print();
+        singLL.insertAt(1, mhs2);
+        singLL.print();
+        singLL.addLast(mhs5);
+        singLL.print();
+        singLL.insertAfter(113, mhs4);
+        singLL.print();
+
+    }
+    }
+    ```
+
+2. 

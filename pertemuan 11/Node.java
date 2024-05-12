@@ -1,10 +1,9 @@
 public class Node {
-    int data;
+    Mahasiswa data;
     Node next;
 
-    public Node(int nilai, Node berikutnya) {
-        this.data=nilai;    
-        this.next=berikutnya;
+    Node(Mahasiswa nilai, Node berikutnya) {
+        data = nilai;
+        next = berikutnya;
     }
-
 }
