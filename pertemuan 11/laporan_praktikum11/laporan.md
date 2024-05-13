@@ -382,4 +382,209 @@ public class SLLMain {
     }
     ```
 
-2. 
+2. class Node
+    ```java
+    public class Node {
+    Mahasiswa data;
+    Node next;
+
+    Node (Mahasiswa nilai, Node berikutnya) {
+        data = nilai;
+        next = berikutnya;
+    }
+    }
+    ```
+
+    class Mahasiswa
+    ```java
+    public class Mahasiswa {
+    String nama;
+    int nim;
+
+    Mahasiswa() {
+
+    }
+
+    Mahasiswa (String nama, int nim) {
+        this.nama = nama;
+        this.nim = nim;
+    }
+    }
+    ```
+
+    class LinkedList
+    ```java
+    public class LinkedList {
+    Node head;
+    Node tail;
+    
+    boolean isEmpty() {
+        if (head != null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void print() {
+        if (!isEmpty()) {
+            Node tmp = head;
+            System.out.println("Data Mahasiswa");
+            System.out.println("Antrian\t\tNIM\t\tNama");
+            System.out.println("-------------------------");
+            int i = 1;
+            while (tmp != null) {
+                System.out.println(i +"\t\t" + tmp.data.nim + "\t\t" + tmp.data.nama + "\t");
+                tmp = tmp.next;
+                i++;
+            }
+            System.out.println("");
+        } else {
+            System.out.println("Antrian masih kosong");
+        }
+    }
+
+    public void removeFirst() {
+        if (!isEmpty()) {
+            head = head.next;
+            System.out.println("Antrian berhasil dikeluarkan");
+        } else if (head == tail) {
+            head = tail = null;
+            System.out.println("Antrian berhasil dikeluarkan");
+        } else {
+            System.out.println("Antrian masih kosong" + "tidak dapat dihapus");
+        }
+    }
+
+    public void addLast (Mahasiswa input) {
+        Node ndInput = new Node(input, null);
+        if (isEmpty()) {
+            head = ndInput;
+            tail = ndInput;
+        } else {
+            tail.next = ndInput;
+            tail = ndInput;
+        }
+        System.out.println("Antrian berhasil ditambahkan");
+    }
+
+    Mahasiswa getData (int index) {
+        Node tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
+
+    public void peekData (int i) {
+        if (i == 1) {
+            System.out.println("Antrian paling depan : " + head.data.nim + " " + head.data.nama);
+        } else if (i == 2) {
+            System.out.println("Antrian paling belakang : " + tail.data.nim + " " + tail.data.nama);
+        }
+    }
+
+    int indexOf (String key) {
+        Node tmp = head;
+        int index = 0;
+        while (tmp !=null && !tmp.data.nama.equalsIgnoreCase(key)) {
+            tmp = tmp.next;
+            index++;
+        }
+        if (tmp == null) {
+            return 1;
+        } else {
+            return index + 1;
+        }
+    }
+    }
+    ```
+    class Main
+    ```java
+    import java.util.LinkedList;
+    import java.util.Scanner;
+    public class Main {
+    public static void menu() {
+        System.out.println("Pilih Menu :");
+        System.out.println("1. Antrian baru");
+        System.out.println("2. Antrian keluar");
+        System.out.println("3. Cek antrian terdepan");
+        System.out.println("4. Cek antrian paling belakang");
+        System.out.println("5. Cek semua antrian");
+        System.out.println("6. Cek nomor antrian dengan nama");
+        System.out.println("7. Cek data dengan nomro antrian");
+        System.out.println("8. keluar");
+        System.out.println("-----------------------------------");
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        LinkedList antri = new LinkedList();
+
+        int i = 1;
+
+        System.out.println("-----PROGRAM ANTRIAN LAYANAN UNIT KEMAHASISWAAN-----");
+
+        do {
+            menu();
+            int pilih = sc.nextInt();
+            sc.nextLine();
+
+            if (pilih == 0) {
+                break;
+            }
+
+            switch (pilih) {
+                case 1:
+                    System.out.print("Nama: ");
+                    String nama = sc.nextLine();
+                    System.out.print("NIM: ");
+                    int nim = sc.nextInt();
+                    sc.nextLine();
+                    Mahasiswa dt = new Mahasiswa(nama, nim);
+                    antri.addLast(dt);
+                    i++;
+                    System.out.println();
+                    break;
+            
+                case 2:
+                    antri.removeFirst();
+                    i--;
+                    System.out.println();
+                    break;
+                case 3:
+                    antri.peekData(1);
+                    System.out.println();
+                    break;
+                case 4:
+                    antri.peekData(2);
+                    System.out.println();
+                    break;
+                case 5:
+                    System.out.println();
+                    antri.print();
+                    break;
+                case 6:
+                    System.out.println("Masukkan nama : ");
+                    String nm = sc.nextLine();
+                    System.out.println("Nama : " + nm + "ada pada antrian ke- " + antri.indexOf(nm));
+                    System.out.println();
+                    break;
+                case 7:
+                    System.out.print("Masukkan nomor antrian : ");
+                    int idx = sc.nextInt();
+                    if (idx < i) {
+                        Mahasiswa mh = antri.getData(idx-1);
+                        System.out.println("Data pada antrian ke-" + idx);
+                        System.out.println("Nama : " + mh.nama + "NIM : " + mh.nim);
+                        System.out.println();
+                    } else {
+                        System.out.println("Antrian ke-" + idx + "tidak ada");
+                    } 
+                    System.out.println();
+                    break;
+            }
+        } while (true);
+    }
+    }
+    ```
