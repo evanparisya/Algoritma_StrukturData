@@ -348,4 +348,86 @@ public class DoubleLinkedListsMain {
 
 #### Jawaban
 1. head = head.next; menghapus node pertama secara logika dengan menggeser head ke node berikutnya.
-    head.prev = null; memastikan bahwa node baru yang sekarang menjadi head memiliki prev yang bernilai null, seperti yang seharusnya untuk node pertama dalam Double Linked Lis
+    head.prev = null; memastikan bahwa node baru yang sekarang menjadi head memiliki prev yang bernilai null, seperti yang seharusnya untuk node pertama dalam Double Linked List
+2. Kita dapat mendeteksi posisi data pada bagian akhir dengan memeriksa apakah current.next adalah null di dalam metode removeLast(). Jika current.next adalah null, itu berarti telah mencapai node terakhir dalam linked list.
+3. Potongan kode tersebut tidak cocok karena hanya menangani kasus di mana elemen yang dihapus bukan elemen pertama atau elemen terakhir dalam linked list. Namun, metode remove harus dapat menangani semua kasus, termasuk penghapusan elemen pertama dan elemen terakhir.
+4. Kode tersebut digunakan untuk memperbarui pointer next dan prev dari node sebelum dan sesudah node yang akan dihapus. Ini dilakukan untuk mempertahankan integritas linked list ganda setelah menghapus sebuah node.
+
+
+## Praktikum 3
+#### Kode Program
+class DoubleLinkedLists
+```java
+ public int getFirst() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Linked List kosong");
+        }
+        return head.data;
+    }
+
+    public int getLast() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Linked List kosong");
+        }
+        Node tmp = head;
+        while (tmp.next != null) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
+
+    public int get(int index) throws Exception {
+        if (isEmpty() || index >= size) {
+            throw new Exception("Nilai indeks di luar batas.");
+        }
+        Node tmp = head;
+        for (int i = 0; i<index; i++) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
+    }
+```
+class DoubleLinkedListMain
+```java
+public class DoubleLinkedListsMain {
+    public static void main(String[] args) throws Exception {
+        DoubleLinkedLists dll = new DoubleLinkedLists();
+
+        dll.print();
+        System.out.println("Size: " + dll.size());
+        System.out.println("=======================");
+        dll.addFirst(3);
+        dll.addLast(4);
+        dll.addFirst(7);
+        dll.print();
+        System.out.println("Size: " + dll.size());
+        System.out.println("=======================");
+        dll.add(40, 1);
+        dll.print();
+        System.out.println("Size: " + dll.size());
+        System.out.println("=======================");
+        System.out.println("Data awal pada Linked Lists adalah: " + dll.getFirst());
+        System.out.println("Data akhir pada Linked Lists adalah: " + dll.getLast());
+        System.out.println("Data indeks ke-1 pada Linked Lists adalah: " + dll.get(1));
+    }
+}
+```
+#### Output
+<img src="image-6.png">
+    
+#### Pertanyaan
+1. Jelaskan method size() pada class DoubleLinkedLists! 
+2. Jelaskan cara mengatur indeks pada double linked lists supaya dapat dimulai dari indeks ke- 1! 
+3. Jelaskan perbedaan karakteristik fungsi Add pada Double Linked Lists dan Single Linked Lists!  
+4. Jelaskan perbedaan logika dari kedua kode program di bawah ini! <img src="image-7.png"> 
+
+#### Jawaban
+1.  size() dalam kelas DoubleLinkedLists digunakan untuk mendapatkan jumlah node yang saat ini ada dalam linked list ganda.
+2. Untuk mengatur indeks pada double linked list agar dimulai dari indeks ke-1 alih-alih indeks ke-0, dapat melakukan beberapa modifikasi pada kode sumber yang diberikan. Pada method add kita mengubah kondisi pemeriksaan batas indeks dari index < 0 || index > size menjadi index < 1 || index > size + 1. Lalu pada method remove mengubah kondisi pemeriksaan batas indeks dari isEmpty() || index >= size menjadi isEmpty() || index < 1 || index > size. Pada method get mengubah kondisi pemeriksaan batas indeks dari isEmpty() || index >= size menjadi isEmpty() || index < 1 || index > size.
+3. Pada Double Linked Lists memiliki pointer prev dan next: Setiap node dalam Double Linked List memiliki dua pointer, yaitu prev yang menunjuk ke node sebelumnya dan next yang menunjuk ke node selanjutnya. Ini memungkinkan traversal ke depan dan ke belakang dalam list. 
+    Pada Single Linked Lits
+    Memiliki hanya pointer next: Setiap node dalam Single Linked List hanya memiliki satu pointer yang menunjuk ke node selanjutnya. Ini membatasi traversal hanya dapat dilakukan dari awal ke akhir list.
+4. Kode program (a) menggunakan variabel size untuk menentukan apakah linked list kosong atau tidak. Jika size bernilai 0, maka linked list dianggap kosong dan metode akan mengembalikan nilai true. Jika size tidak sama dengan 0, maka metode akan mengembalikan nilai false.
+Kode program (b) menggunakan variabel head untuk menentukan apakah linked list kosong atau tidak. Dalam struktur data Linked List, head adalah variabel yang menyimpan referensi ke node pertama dalam list. Jika head bernilai null, maka linked list dianggap kosong dan metode akan mengembalikan true. Jika head tidak bernilai null, maka metode akan mengembalikan false.
+
+## Tugas Praktikum
