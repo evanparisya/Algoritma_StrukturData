@@ -14,7 +14,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        DLL dll = new DLL();
+        DoubleLinkedLists dll = new DoubleLinkedLists();
 
         do {
             menu();

@@ -8,19 +8,7 @@ public class DoubleLinkedLists {
     }
 
     public boolean isEmpty() {
-        if (isEmpty()) {
-            head = new Node(null, item, null);
-            size++;
-        } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
-            }
-            Node newNode = new Node(current, item, null);
-            current.next = newNode;
-            size++;
-        }
-        System.out.println("Antrian berhasil ditambahkan");
+        return head == null;
     }
 
     public void removeFirst() throws Exception {
@@ -29,13 +17,11 @@ public class DoubleLinkedLists {
             throw new Exception("Linked List masih kosong, tidak dapat dihapus!");
         } else if (size == 1) {
             head = null;
-            size--;
-            // return;
         } else {
             head = head.next;
             head.prev = null;
-            size--;
         }
+        size--;
         System.out.println(temp.data.nama + " telah selesai divaksinisasi.");
         print();
     }
@@ -57,5 +43,20 @@ public class DoubleLinkedLists {
             }
             System.out.println("Sisa Antrian: " + i);
         }
+    }
+
+    public void addLast(Penerima data) {
+        Node newNode = new Node(null, data, null);
+        if (isEmpty()) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.prev = current;
+        }
+        size++;
     }
 }
