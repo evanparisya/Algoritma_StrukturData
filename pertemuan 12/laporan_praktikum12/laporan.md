@@ -431,3 +431,160 @@ public class DoubleLinkedListsMain {
 Kode program (b) menggunakan variabel head untuk menentukan apakah linked list kosong atau tidak. Dalam struktur data Linked List, head adalah variabel yang menyimpan referensi ke node pertama dalam list. Jika head bernilai null, maka linked list dianggap kosong dan metode akan mengembalikan true. Jika head tidak bernilai null, maka metode akan mengembalikan false.
 
 ## Tugas Praktikum
+#### Tugas 1
+class penerima
+```java
+public class Penerima {
+    int no;
+    String nama;
+
+    Penerima (int no, String nama) {
+        this.no = no;
+        this.nama = nama;
+    }
+}
+```
+class Node
+```java
+public class Node {
+    Penerima data;
+    Node next, prev;
+
+    Node(Node prev, Penerima data, Node next) {
+        this.data = data;
+        this.next = next;
+        this.prev = prev;
+    }
+}
+```
+class DoubleLinkedLists
+```java
+public class DoubleLinkedLists {
+    Node head;
+    int size;
+
+    DoubleLinkedLists() {
+        head = null;
+        size = 0;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public void removeFirst() throws Exception {
+        Node temp = head;
+        if(isEmpty()) {
+            throw new Exception("Linked List masih kosong, tidak dapat dihapus!");
+        } else if (size == 1) {
+            head = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+        size--;
+        System.out.println(temp.data.nama + " telah selesai divaksinisasi.");
+        print();
+    }
+
+    public void print() {
+        if(isEmpty()) {
+            System.out.println("Linked lists kosong");
+        } else {
+            Node tmp = head;
+            int i = 0;
+            System.out.println("------------------------------");
+            System.out.println("Daftar Pengantri Vaksin");
+            System.out.println("------------------------------");
+            System.out.println("|No.\t|Nama\t|");
+            while(tmp != null) {
+                System.out.print("|" + tmp.data.no + "\t|" + tmp.data.nama + "\t|\n");
+                tmp = tmp.next;
+                i++;
+            }
+            System.out.println("Sisa Antrian: " + i);
+        }
+    }
+
+    public void addLast(Penerima data) {
+        Node newNode = new Node(null, data, null);
+        if (isEmpty()) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.prev = current;
+        }
+        size++;
+    }
+}
+```
+class Main
+```java
+import java.util.Scanner;
+public class Main {
+    public static void menu() {
+        System.out.println("\n++++++++++++++++++++++++++++++");
+        System.out.println("PENGANTRI VAKSIN EXTRAVAGANZA");
+        System.out.println("++++++++++++++++++++++++++++++\n");
+        System.out.println("1. Tambah Data Penerima Vaksin");
+        System.out.println("2. Hapus Data Pengantri Vaksin");
+        System.out.println("3. Daftar Penerima Vaksin");
+        System.out.println("4. Keluar");
+        System.out.println("++++++++++++++++++++++++++++++");
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+
+        DoubleLinkedLists dll = new DoubleLinkedLists();
+
+        do {
+            menu();
+            int pilih = sc.nextInt();
+            sc.nextLine();
+
+            switch (pilih) {
+                case 1:
+                    System.out.println("------------------------------");
+                    System.out.println("Masukkan Data Penerima Vaksin");
+                    System.out.println("------------------------------");
+                    System.out.println("Nomor Antrian : ");
+                    int no = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Nama Penerima : ");
+                    String nama = sc.nextLine();
+                    dll.addLast(new Penerima(no, nama));
+                    break;
+
+                case 2:
+                    dll.removeFirst();
+                    break;
+
+                case 3:
+                    dll.print();
+                    break;
+
+                case 4:
+                    System.exit(4);
+                    break;
+            
+                default:
+                    System.out.println("Pilihan yang anda masukkan salah, silahkan coba lagi\n");
+                    break;
+            }
+        } while (true);
+    }
+}
+```
+Output
+
+<img src="image-8.png">
+<img src="image-9.png">
+<img src="image-10.png">
+
+#### Tugas 2
