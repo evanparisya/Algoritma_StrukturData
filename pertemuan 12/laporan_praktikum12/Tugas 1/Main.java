@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Main {
     public static void menu() {
         System.out.println("\n++++++++++++++++++++++++++++++");
