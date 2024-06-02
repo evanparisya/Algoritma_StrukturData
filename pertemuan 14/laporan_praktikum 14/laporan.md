@@ -247,3 +247,71 @@ Jika right bernilai null, itu berarti node saat ini tidak memiliki anak di sebel
 5. Kode tersebut digunakan dalam proses menambahkan (insert) sebuah node baru dengan nilai data ke dalam Binary Search Tree. Tujuan utama dari baris program ini adalah untuk menemukan posisi yang tepat dalam BST di mana node baru dengan nilai data harus ditempatkan.
 
 ## Praktikum 2 : Implementasi binary tree dengan array
+#### Kode Program
+Class BinaryTreeArray
+```java
+public class BinaryTreeArray09 {
+    int[] data;
+    int idxLast;
+
+    public BinaryTreeArray09() {
+        data = new int [10];
+    }
+    void populatedData(int data[], int idxLast) {
+        this.data = data;
+        this.idxLast = idxLast;
+    }
+    
+    void traverseInOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            traverseInOrder(2*idxStart+1);
+            System.out.print(data[idxStart] + " ");
+            traverseInOrder(2*idxStart+2);
+        }
+    }
+}
+```
+Class BinaryTreeArrayMain
+```java
+public class BinaryTreeArrayMain {
+    public static void main(String[] args) {
+        BinaryTreeArray09 bta = new BinaryTreeArray09();
+        int[] data = {6, 4, 8, 3, 5, 7, 9, 0, 0, 0};
+        int idxLast = 6;
+        bta.populatedData(data, idxLast);
+        System.out.print("\nInOrder Traversal : ");
+        bta.traverseInOrder(0);
+        System.out.println("\n");
+    }
+}
+```
+#### Output
+<img src="image-2.png">
+
+#### Pertanyaan
+1. Apakah kegunaan dari atribut data dan idxLast yang ada di class BinaryTreeArray?
+2. Apakah kegunaan dari method populateData()?
+3. Apakah kegunaan dari method traverseInOrder()?
+4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi 
+left child dan rigth child masing-masing?
+5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4?
+#### Jawaban
+1. Atribut data digunakan untuk menyimpan nilai-nilai simpul dalam binary tree, sedangkan atribut idxLast digunakan untuk melacak indeks terakhir simpul yang valid dalam array data.
+2. Untuk mengisi nilai-nilai ke dalam array data dan mengatur nilai idxLast yang mewakili indeks simpul terakhir dalam binary tree.
+3. Digunakan untuk melakukan pencarian (traversal) secara in-order pada binary tree yang direpresentasikan dengan array data.
+4. Jika suatu node binary tree disimpan dalam array indeks 2, Left child berada pada indeks 5 Right child berada pada indeks 6.
+5. Kode tersebut digunakan untuk menginisialisasi nilai variabel idxLast yang ada di dalam kelas BinaryTreeArray09. 
+
+## Tugas Praktikum
+1. Buat method di dalam class BinaryTree yang akan menambahkan node dengan cara 
+rekursif.
+2. Buat method di dalam class BinaryTree untuk menampilkan nilai paling kecil dan yang 
+paling besar yang ada di dalam tree.
+3. Buat method di dalam class BinaryTree untuk menampilkan data yang ada di leaf.
+4. Buat method di dalam class BinaryTree untuk menampilkan berapa jumlah leaf yang ada 
+di dalam tree.
+5. Modifikasi class BinaryTreeArray, dan tambahkan : 
+    
+    • method add(int data) untuk memasukan data ke dalam tree 
+        
+    • method traversePreOrder() dan traversePostOrder().

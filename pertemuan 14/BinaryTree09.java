@@ -153,4 +153,68 @@ public class BinaryTree09 {
         }
     }
 
+    void addNodeR(int key) {
+        root = addNodeR(root, key);;
+    }
+// soal 1
+    Node09 addNodeR (Node09 current, int data) {
+        if (current == null) {
+            return new Node09(data);
+        }
+        if (data < current.data) {
+            current.left = addNodeR(current.left, data);
+        } else if (data > current.data) {
+            current.right = addNodeR(current.left, data);
+        } else {
+            return current;
+        }
+        return current;
+    }
+
+}
+
+// soal 2
+void maksimal() {
+    Node09 current = root;
+    while (current.right != null) {
+        current = current.right;
+    }
+    System.out.println(current.data);
+}
+void minimal() {
+     Node09 current = root;
+     while (current.left != null) {
+        current = current.left;
+     }
+     System.out.println(current.data);
+}
+
+// soal 3
+void printLeft(Node09 root) {
+    if (root == null) {
+        return;
+    }
+    if (root.left == null && root.right == null) {
+        System.out.print(" "+ root.data);
+        return;
+    } if (root.left != null) {
+        printLeft(root.left);
+    } if (root.right != null) {
+        printLeft(root.right);
+    }
+}
+
+// soal 4
+int jumlahLeft() {
+    return jumlahLeft(root);
+}
+int jumlahLeft(Node09 node) {
+    if (node == null) {
+        return 0;
+    }
+    if (node.left == null && node.right == null) {
+        return 1;
+    } else {
+        return jumlahLeft(node.left) + jumlahLeft(node.right);
+    }
 }
