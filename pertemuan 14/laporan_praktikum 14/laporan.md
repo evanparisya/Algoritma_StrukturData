@@ -315,3 +315,117 @@ di dalam tree.
     • method add(int data) untuk memasukan data ke dalam tree 
         
     • method traversePreOrder() dan traversePostOrder().
+
+#### Jawaban
+1. ```java
+    // soal 1
+    Node09 addNodeR (Node09 current, int data) {
+        if (current == null) {
+            return new Node09(data);
+        }
+        if (data < current.data) {
+            current.left = addNodeR(current.left, data);
+        } else if (data > current.data) {
+            current.right = addNodeR(current.left, data);
+        } else {
+            return current;
+        }
+        return current;
+    }
+    ```
+2. ```java
+    // soal 2
+    void maksimal() {
+        if (root == null) {
+            System.out.println("Pohon biner masih kosong");
+            return;
+        }
+        Node09 current = root;
+        while (current.right != null) {
+            current = current.right;
+        }
+        System.out.println(current.data);
+    }
+    void minimal() {
+        if (root == null) {
+            System.out.println("Pohon biner masih kosong");
+        }
+        Node09 current = root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        System.out.println(current.data);
+    }
+    ```
+3. ```java
+    // soal 3
+    void printLeft(Node09 root) {
+        if (root == null) {
+            return;
+        }
+        if (root.left == null && root.right == null) {
+            System.out.print(" "+ root.data);
+            return;
+        } if (root.left != null) {
+            printLeft(root.left);
+        } if (root.right != null) {
+            printLeft(root.right);
+        }
+    }
+    ```
+4. ```java
+    // soal 4
+    int jumlahLeft() {
+        return jumlahLeft(root);
+    }
+    int jumlahLeft(Node09 node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        } else {
+            return jumlahLeft(node.left) + jumlahLeft(node.right);
+        }
+    }
+    ```
+5. Class BinaryTreeArray
+    ```java
+     //SOAL No 5
+    void add(int data){
+        if(idxLast == this.data.length -1){
+            System.out.println("Tree Array sudah Penuh");
+        }else{
+            this.data[++idxLast] = data;
+        }
+    }
+    void traversePreOrder(int idxStart){
+        if(idxStart <= idxLast){
+            System.out.print(" "+data[idxStart]);
+            traversePreOrder(2 * idxStart + 1);
+            traversePreOrder(2 * idxStart + 2);
+        }
+    }
+    void traversePostOrder(int idxStart){
+        if(idxStart <= idxLast){
+            traversePostOrder(2 * idxStart + 1);
+            traversePostOrder(2 * idxStart + 2);
+            System.out.print(" "+data[idxStart]);
+        }
+    }
+    ```
+    Main
+    ```java
+       System.out.println("\n==============================");
+        System.out.println("     Hasil Tugas NO 5          ");
+        System.out.println("==============================");
+        bta.add(90);
+        bta.add(72);
+        System.out.println("method traverse PreOrder");
+        bta.traversePreOrder(0);
+        System.out.println();
+        System.out.println("method traverse PostOrder");
+        bta.traversePostOrder(0);
+        System.out.println();
+    }
+    ```

@@ -8,9 +8,9 @@ public class BinaryTreeArrayMain {
         bta.traverseInOrder(0);
         System.out.println("\n");
     
-        System.out.println("\n-------------------------------");
+        System.out.println("\n==============================");
         System.out.println("     Hasil Tugas NO 5          ");
-        System.out.println("-------------------------------");
+        System.out.println("==============================");
         bta.add(90);
         bta.add(72);
         System.out.println("method traverse PreOrder");

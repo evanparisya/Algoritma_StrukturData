@@ -10,11 +10,11 @@ public class BinaryTree09 {
     }
 
     boolean isEmpty() {
-        return root!= null;
+        return root== null;
     }
 
     void add(int data) {
-        if (!isEmpty()) {
+        if (isEmpty()) {
             root = new Node09(data);
         } else {
             Node09 current = root;
@@ -171,10 +171,14 @@ public class BinaryTree09 {
         return current;
     }
 
-}
+
 
 // soal 2
 void maksimal() {
+    if (root == null) {
+        System.out.println("Pohon biner masih kosong");
+        return;
+    }
     Node09 current = root;
     while (current.right != null) {
         current = current.right;
@@ -182,6 +186,9 @@ void maksimal() {
     System.out.println(current.data);
 }
 void minimal() {
+    if (root == null) {
+        System.out.println("Pohon biner masih kosong");
+    }
      Node09 current = root;
      while (current.left != null) {
         current = current.left;
@@ -217,4 +224,5 @@ int jumlahLeft(Node09 node) {
     } else {
         return jumlahLeft(node.left) + jumlahLeft(node.right);
     }
+}
 }
