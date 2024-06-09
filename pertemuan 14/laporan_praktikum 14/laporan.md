@@ -1,4 +1,4 @@
-# Laporan Praktikum 15
+# Laporan Praktikum 14
 ## Praktikum 1 : Implementasi Binary Search Tree menggunakan Linked List
 #### Kode Program
 Class Node
