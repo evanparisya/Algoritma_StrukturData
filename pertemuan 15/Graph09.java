@@ -16,28 +16,46 @@ public class Graph09 {
         //list[tujuan].addFirst(asal, jarak);
     }
 
-    public void degree(int asal) throws Exception{
-        int k, totalIn = 0, totalOut=0;
-        for ( int i= 0; i < vertex; i++) {
-            //inDegree
-            for (int j = 0 ; j <list[i].size(); j++){
-                if (list [i].get(j)==asal){
-                    ++totalIn;
-                }
+    public void degree(int asal) throws Exception {
+        int inDegree = 0, outDegree = 0;
+        for (int i = 0; i < vertex; i++) {
+          // inDegree
+          for (int j = 0; j < list[i].size(); j++) {
+            if (list[i].get(j) == asal) {
+              inDegree++;
             }
-
-            //outDegree
-            for (k =0; k<list[asal].size();k++){
-                list[asal].get(k);
-            }
-            totalOut = k;
-        }    
-        System.out.println("InDegree dari gedung " + (char) ('A' + asal) + ": " + totalIn);
-        System.out.println("OutDegree dari gedung " + (char) ('A' + asal) + ": " + totalOut);
-        System.out.println("Degree dari gedung " + (char) ('A' + asal) + ": " + (totalIn+totalOut));
-       // System.out.println("OutDegree dari gedung " + (char) ('A' + asal) + ": " + list[asal].size());
-        
+          }
+    
+          // outDegree
+          for (int k = 0; k < list[asal].size(); k++) {
+            outDegree++;
+          }
+        }
+    
+        System.out.println("InDegree dari gedung " + (char) ('A' + asal) + ": " + inDegree);
+        System.out.println("OutDegree dari gedung " + (char) ('A' + asal) + ": " + outDegree);
+        System.out.println("Degree dari gedung " + (char) ('A' + asal) + ": " + (inDegree + outDegree));
     }
+    // latihan no 2
+    public void updateJarak(int asal, int tujuan, int jarakBaru) throws Exception {
+        Node09 current = list[asal].head;
+        while (current != null) {
+          if (current.data == tujuan) {
+            current.jarak = jarakBaru;
+            break;
+          }
+          current = current.next;
+        }
+      }
+
+      // latihan no 3
+      public int hitungEdge() {
+        int totalEdge = 0;
+        for (int i = 0; i < vertex; i++) {
+          totalEdge += list[i].size();
+        }
+        return totalEdge;
+      }
 
     public void removeEdge(int asal, int tujuan)throws Exception{
         for(int i = 0; i<vertex;i++){

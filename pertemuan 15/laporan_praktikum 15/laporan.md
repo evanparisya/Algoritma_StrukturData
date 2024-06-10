@@ -318,3 +318,147 @@ Class GraphMain
 4. Modifikasi kode program sehingga terdapat method untuk menghitung degree, termasuk inDegree dan outDegree! 
 
 #### Jawaban
+1. 
+2. Yang digunakan pada percobaan 2 adalah Graph Matriks
+3. Dua baris kode tersebut membuat koneksi dua arah antara gedung B dan gedung C dengan jarak yang berbeda.
+4. Berikut hasil modifikasi.
+    ```java
+    public void degree(int asal) throws Exception {
+        int inDegree = 0, outDegree = 0;
+        for (int i = 0; i < vertex; i++) {
+          // inDegree
+          for (int j = 0; j < list[i].size(); j++) {
+            if (list[i].get(j) == asal) {
+              inDegree++;
+            }
+          }
+    
+          // outDegree
+          for (int k = 0; k < list[asal].size(); k++) {
+            outDegree++;
+          }
+        }
+    
+        System.out.println("InDegree dari gedung " + (char) ('A' + asal) + ": " + inDegree);
+        System.out.println("OutDegree dari gedung " + (char) ('A' + asal) + ": " + outDegree);
+        System.out.println("Degree dari gedung " + (char) ('A' + asal) + ": " + (inDegree + outDegree));
+    }
+    ```
+
+## Latihan Praktikum
+1. Modifikasi kode program pada class GraphMain sehingga terdapat menu program yang bersifat dinamis, setidaknya terdiri dari:  
+- a) Add Edge 
+- b) Remove Edge 
+- c) Degree 
+- d) Print Graph 
+- e) Cek Edge Pengguna dapat memilih menu program melalui input Scanner 
+#### Jawaban
+```java
+import java.util.Scanner;
+
+public class GraphMain09 {
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    Graph09 gedung = new Graph09(6);
+
+    // Menu program
+    int pilihan;
+    do {
+      System.out.println("\nMenu Graf:");
+      System.out.println("1. Add Edge");
+      System.out.println("2. Remove Edge");
+      System.out.println("3. Degree");
+      System.out.println("4. Print Graph");
+      System.out.println("5. Cek Edge");
+      System.out.println("0. Keluar");
+      System.out.print("Masukkan pilihan: ");
+      pilihan = sc.nextInt();
+
+      switch (pilihan) {
+        case 1: // Add Edge
+          System.out.print("Masukkan gedung asal: ");
+          int asal = sc.nextInt();
+          System.out.print("Masukkan gedung tujuan: ");
+          int tujuan = sc.nextInt();
+          System.out.print("Masukkan jarak: ");
+          int jarak = sc.nextInt();
+          gedung.addEdge(asal, tujuan, jarak);
+          break;
+
+        case 2: // Remove Edge
+          System.out.print("Masukkan gedung asal: ");
+          asal = sc.nextInt();
+          System.out.print("Masukkan gedung tujuan: ");
+          tujuan = sc.nextInt();
+          gedung.removeEdge(asal, tujuan);
+          break;
+
+        case 3: // Degree
+          System.out.print("Masukkan gedung: ");
+          int gedungIndex = sc.nextInt();
+          gedung.degree(gedungIndex);
+          break;
+
+        case 4: // Print Graph
+          gedung.printGraph();
+          break;
+
+        case 5: // Cek Edge
+          System.out.print("Masukkan gedung asal: ");
+          asal = sc.nextInt();
+          System.out.print("Masukkan gedung tujuan: ");
+          tujuan = sc.nextInt();
+          boolean tetangga = gedung.bertetangga(asal, tujuan);
+          char gedungAsal = (char) ('A' + asal);
+          char gedungTujuan = (char) ('A' + tujuan);
+
+          if (tetangga) {
+            System.out.println("Gedung " + gedungAsal + " dan " + gedungTujuan + " bertetangga");
+          } else {
+            System.out.println("Gedung " + gedungAsal + " dan " + gedungTujuan + " tidak bertetangga");
+          }
+          break;
+
+        case 0: // Keluar
+          System.out.println("Keluar dari program.");
+          break;
+
+        default:
+          System.out.println("Pilihan tidak valid!");
+      }
+    } while (pilihan != 0);
+
+    sc.close();
+  }
+}
+```
+
+2. Tambahkan method updateJarak pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan! 
+#### Jawaban
+```java
+// latihan no 2
+    public void updateJarak(int asal, int tujuan, int jarakBaru) throws Exception {
+        Node09 current = list[asal].head;
+        while (current != null) {
+          if (current.data == tujuan) {
+            current.jarak = jarakBaru;
+            break;
+          }
+          current = current.next;
+        }
+      }
+```
+
+3. Tambahkan method hitungEdge untuk menghitung banyaknya edge yang terdapat di dalam graf!
+```java
+// latihan no 3
+      public int hitungEdge() {
+        int totalEdge = 0;
+        for (int i = 0; i < vertex; i++) {
+          totalEdge += list[i].size();
+        }
+        return totalEdge;
+      }
+``` 
+
+
